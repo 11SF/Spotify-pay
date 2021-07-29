@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{ useState, useEffect } from "react";
+
+import './App.css'
+import Header from './components/Navbar/Navbar';
+import Card from './components/Card/Card';
+import loading_icon from './asset/bars.svg'
 
 function App() {
+  const [memberData, setMemberData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  async function fetchData() {
+    setLoading(true)
+    let res = await fetch('https://mysitebackend.herokuapp.com/api/member/get/all');
+    res = await res.json()
+    setLoading(false)
+    setMemberData(res);
+  }
+
+  useEffect(() => fetchData(),[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <main>
+        <div className="container">
+          {loading ? 
+            <img className="loading" src={loading_icon} alt="loading_bar" /> 
+            : memberData.map(user => (<Card key={user._id} className="card" name={user.name} 
+              pic={user.img_src} lastDate={user.lastDate} expireDate={user.expireDate} />)) }
+        </div>
+      </main>
     </div>
   );
 }

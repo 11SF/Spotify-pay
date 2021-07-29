@@ -1,0 +1,46 @@
+
+.card_body_green {
+    margin: 0 auto;
+    max-width: 480px;
+    height: 237px;
+    background-color: #1DB954; 
+    border-radius: 28px;
+}
+.card_body_yellow {
+    margin: 0 auto;
+    max-width: 480px;
+    height: 237px;
+    background-color: #F2CD08; 
+    border-radius: 28px;
+}
+.card_body_red {
+    margin: 0 auto;
+    max-width: 480px;
+    height: 237px;
+    background-color: #BD3333; 
+    border-radius: 28px;
+}
+.card_item {
+    display: flex;
+}
+.avatar {
+    width: 169px;
+    height: 237px;
+    border-radius: 28px 0 0 28px;
+    object-fit: cover;
+    text-align: center;
+}
+.text_area {
+    padding: 27px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content:space-between;
+}
+.name {
+    font-size: 36px;
+    font-weight: 400;
+}
+.info {
+    font-size: 18px;
+    font-weight: 300;
+}
