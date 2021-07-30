@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 
 import './Card.css';
 
-export default function Card({name,pic,lastDate,expireDate}) {
+export default function Card({ name,pic,lastDate,expireDate }) {
 
     const [status, setStatus] = useState('1');
 
