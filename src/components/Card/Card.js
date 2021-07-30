@@ -13,7 +13,7 @@ export default function Card({ name,pic,lastDate,expireDate }) {
         let temp  = expireDate.split("/");
         if (temp[1] > month || year < temp[2]) {
             setStatus('1');
-        } else if (temp[1] === month) {
+        } else if (month.valueOf(temp[1])) {
             setStatus('2');
         } else {
             setStatus('3');
