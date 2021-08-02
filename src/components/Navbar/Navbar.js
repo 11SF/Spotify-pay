@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom';
 
 import './Navbar.css'
 
@@ -15,7 +16,7 @@ export default function Navbar() {
             <div className="item">
                 <div className="header_wrap">
                     <p className="logo">ถึงเวลาจ่ายค่า Spotify รึยังน้าาา</p>    
-                    <p className="header_btn">เข้าสู่ระบบ</p>
+                    <Link to="/login" className="header_btn"><p>เข้าสู่ระบบ</p></Link>
                     <img className="hamberger" src={hamberger} alt="hamberger" onClick={()=> dropMenu()}></img>
                 </div>
             </div> 

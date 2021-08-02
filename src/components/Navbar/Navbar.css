@@ -33,7 +33,10 @@ p {
 .header_btn {
     cursor: pointer;
 }
-
+.header_btn p:hover {
+    color: #121212;
+    border-bottom: #121212 solid 1px;
+}
 .logo {
     cursor: default;
     pointer-events: none;

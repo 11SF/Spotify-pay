@@ -1,9 +1,11 @@
 import React,{ useState, useEffect } from "react";
+import { Route } from "react-router-dom";
 
 import './App.css'
 import Header from './components/Navbar/Navbar';
 import Card from './components/Card/Card';
 import Payment from './components/Payment/Payment'
+import LoginBox from './components/LoginBox/LoginBox'
 
 import loading_icon from './asset/bars.svg'
 
@@ -24,18 +26,24 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <main>
-        <div className="container">
-          {loading ? 
-            <img className="loading" src={loading_icon} alt="loading_bar" /> 
-            : memberData.map(user => (<Card key={user._id} className="card" name={user.name} 
-              pic={user.img_src} lastDate={user.lastDate} expireDate={user.expireDate} />)) }
-        </div>
-        <div className="bottom_wave"></div>
-        <Payment />
-      </main>
-      <footer className="footer">11SF</footer>
+      <Route exact path="/">
+        <Header />
+        <main>
+          <div className="container">
+            {loading ? 
+              <img className="loading" src={loading_icon} alt="loading_bar" /> 
+              : memberData.map(user => (<Card key={user._id} className="card" name={user.name} 
+                pic={user.img_src} lastDate={user.lastDate} expireDate={user.expireDate} />)) }
+          </div>
+          <div className="bottom_wave"></div>
+          <Payment />
+        </main>
+        <footer className="footer">11SF</footer>
+      </Route>
+
+      <Route path="/login">
+        <LoginBox />
+      </Route>
     </div>
   );
 }
