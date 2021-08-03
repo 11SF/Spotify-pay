@@ -11,6 +11,7 @@
 .header {
     display: block;
     width: 100%;
+    user-select: none;
 }
 .item {
     background-color: #1DB954;
@@ -29,15 +30,19 @@ p {
     font-size: 24px;
     font-weight: 500;
     color: #ffffff;
+    transition: 0.5s;
+
 }
 .header_btn {
     cursor: pointer;
+    transition: 0.5s;
 }
 .header_btn p:hover {
     color: #121212;
-    border-bottom: #121212 solid 1px;
+    /* border-bottom: #121212 solid 1px; */
+
 }
-.logo {
+.logo#nav_logo {
     cursor: default;
     pointer-events: none;
  

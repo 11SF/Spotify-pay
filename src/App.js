@@ -1,49 +1,18 @@
-import React,{ useState, useEffect } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 
+import Home from './views/Home'
+import LoginBox from './views/Login'
 import './App.css'
-import Header from './components/Navbar/Navbar';
-import Card from './components/Card/Card';
-import Payment from './components/Payment/Payment'
-import LoginBox from './components/LoginBox/LoginBox'
-
-import loading_icon from './asset/bars.svg'
-
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
-  const [memberData, setMemberData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  
-  async function fetchData() {
-    setLoading(true);
-    let res = await fetch('https://mysitebackend.herokuapp.com/api/member/get/all');
-    res = await res.json();
-    setLoading(false);
-    setMemberData(res);
-  }
-
-  useEffect(() => fetchData(),[]);
-
+  Aos.init();
   return (
     <div className="App">
-      <Route exact path="/">
-        <Header />
-        <main>
-          <div className="container">
-            {loading ? 
-              <img className="loading" src={loading_icon} alt="loading_bar" /> 
-              : memberData.map(user => (<Card key={user._id} className="card" name={user.name} 
-                pic={user.img_src} lastDate={user.lastDate} expireDate={user.expireDate} />)) }
-          </div>
-          <div className="bottom_wave"></div>
-          <Payment />
-        </main>
-        <footer className="footer">11SF</footer>
-      </Route>
-
-      <Route path="/login">
-        <LoginBox />
-      </Route>
+      <Route path="/" exact><Home /></Route>
+      <Route path="/login"><LoginBox /></Route>
     </div>
   );
 }

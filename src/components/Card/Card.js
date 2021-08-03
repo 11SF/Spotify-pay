@@ -30,7 +30,7 @@ export default function Card({ name,pic,lastDate,expireDate }) {
         }
     }
     return (
-        <div className="card">
+        <div className="card" data-aos="zoom-in">
             <div className={status_func(status).class}>
                 <div className="card_item">
                     <img className="avatar" src={pic} alt="pic" />

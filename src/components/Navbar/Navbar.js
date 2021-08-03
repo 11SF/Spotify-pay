@@ -12,11 +12,11 @@ export default function Navbar() {
         setToggle(!toggle);
     }
     return (
-        <div className="header">
+        <div className="header" data-aos="slide-down">
             <div className="item">
                 <div className="header_wrap">
-                    <p className="logo">ถึงเวลาจ่ายค่า Spotify รึยังน้าาา</p>    
-                    <Link to="/login" className="header_btn"><p>เข้าสู่ระบบ</p></Link>
+                    <p className="logo" id="nav_logo" >ถึงเวลาจ่ายค่า Spotify รึยังน้าาา</p>    
+                    <Link to="/login" className="header_btn" ><p>เข้าสู่ระบบ</p></Link>
                     <img className="hamberger" src={hamberger} alt="hamberger" onClick={()=> dropMenu()}></img>
                 </div>
             </div> 
