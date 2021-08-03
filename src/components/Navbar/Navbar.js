@@ -6,7 +6,7 @@ import './Navbar.css'
 import hamberger from '../../asset/hamburger_icon.svg'
 // import top_wave from '../../asset/wave.svg';
 
-export default function Navbar() {
+export default function Navbar({isAuth}) {
     const [toggle, setToggle] = useState(false);
     function dropMenu() {
         setToggle(!toggle);
@@ -15,8 +15,9 @@ export default function Navbar() {
         <div className="header" data-aos="slide-down">
             <div className="item">
                 <div className="header_wrap">
-                    <p className="logo" id="nav_logo" >ถึงเวลาจ่ายค่า Spotify รึยังน้าาา</p>    
-                    <Link to="/login" className="header_btn" ><p>เข้าสู่ระบบ</p></Link>
+                    <p className="logo" id="nav_logo" >ถึงเวลาจ่ายค่า Spotify รึยังน้าาา</p>  
+                    { isAuth ? <Link to="/admin" className="header_btn" ><p>ข้อมูลสมาชิก</p></Link>
+                        : <Link to="/login" className="header_btn" ><p>เข้าสู่ระบบ</p></Link>}  
                     <img className="hamberger" src={hamberger} alt="hamberger" onClick={()=> dropMenu()}></img>
                 </div>
             </div> 

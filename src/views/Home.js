@@ -6,7 +6,7 @@ import Payment from '../components/Payment/Payment'
 
 import loading_icon from '../asset/bars.svg'
 
-export default function Home() {
+export default function Home({isAuth}) {
 
     const [memberData, setMemberData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -22,7 +22,7 @@ export default function Home() {
     useEffect(() => {fetchData()},[]);
     return (
         <div>
-            <Header />
+            <Header isAuth={isAuth}/>
             <main>
                 <div className="container">
                     {loading ? 
