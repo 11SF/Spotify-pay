@@ -1,37 +1,56 @@
 import React, {useState} from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import { auth } from '../services/firebase';
+
 
 import './Login.css'
-export default function Login() {
-    const [username, setUsername] = useState(null);
+function Login() {
+    const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [isBlack, setIsBlank] = useState(false);
-    const [valid, setValid] = useState(false);
+    const [valid, setValid] = useState(true);
+    // const [data, setData] = useState(null);
 
     // const history = useHistory()
 
-    const handleUsername = e => {
-        setUsername(e.target.value)
+    const handleEmail = e => {
+        setEmail(e.target.value)
     }
     const handlePassword = e => {
         setPassword(e.target.value)
     }
 
-    const handleSubmit = e => {
-        if(!username||!password) {
+    // const handleSubmit = e => {
+    //     if(!email||!password) {
+    //         setIsBlank(true);
+    //     } else {
+    //         e.preventDefault();
+    //         setAuth(loginWithEmail(email,password))
+    //         // loginWithEmail(email,password);        
+    //     }
+    // }
+    function handleSubmit(e) {
+        if(!email||!password) {
             setIsBlank(true);
         } else {
-            if(username === "admin" && password === "admin") 
-                setValid(true)
-            else
-                setValid(false)
-
-            if(valid) {
-                sessionStorage.setItem("session", true);
-                <Redirect to="/admin"></Redirect>
-            }
-               
+            e.preventDefault();
+           loginWithEmail(email,password)
+            // loginWithEmail(email,password);        
         }
+    }
+
+    const loginWithEmail = (email,password) => {
+       auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setValid(false)
+        });
     }
 
     return (
@@ -43,8 +62,8 @@ export default function Login() {
                 <p className="detail">สำหรับหัวหน้าครอบครัว 🌟</p>
                 <form onSubmit={handleSubmit}>
                     <div className="input_area">
-                        <input className="login_input" placeholder="username" type="text" onChange={handleUsername}></input>
-                        <input className="login_input" placeholder="password" type="password" onChange={handlePassword}></input>
+                        <input className="login_input" placeholder="E-mail" type="email" onChange={handleEmail}></input>
+                        <input className="login_input" placeholder="Password" type="password" onChange={handlePassword}></input>
                     </div>
                     {isBlack ? <div>กรุณากรอกข้อมูลให้ครบถ้วน</div> : ''}
                     <button className="login_btn" onClick={handleSubmit}>เข้าสู่ระบบ</button>
@@ -54,3 +73,5 @@ export default function Login() {
         </div>
     )
 }
+
+export default Login
